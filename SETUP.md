@@ -7,12 +7,14 @@
 
 | Item | Required? | Cost |
 |------|-----------|------|
-| Claude Code | Yes | Free to install |
-| Anthropic API key | Yes | ~$5–20/month depending on usage |
+| Claude.ai subscription | Yes | From $20/month (Pro plan) |
+| Claude Code | Yes | Included with your Claude.ai subscription — free to install |
 | Bright Data account | Strongly recommended | ~$10/month (free trial available) |
 | Notion workspace | Optional | Free |
 
 **Total time to first research:** ~30 minutes
+
+**Note on Claude:** Claude Code is part of Claude.ai — you do NOT need a separate API key. Just subscribe at [claude.ai](https://claude.ai) and Claude Code is included.
 
 ---
 
@@ -31,22 +33,11 @@ Claude Code is a command-line tool that runs on your computer. Don't let "comman
 npm install -g @anthropic-ai/claude-code
 ```
 
-**Get your Anthropic API key:**
-1. Go to [console.anthropic.com](https://console.anthropic.com)
-2. Sign up or log in
-3. Click "API Keys" → "Create Key"
-4. Copy the key (it starts with `sk-ant-...`)
-
-**Add it to your terminal** (Mac/Linux):
+**Sign in with your Claude.ai account:**
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-your-key-here
+claude
 ```
-
-To make this permanent (so you don't need to re-enter after restarting Terminal):
-```bash
-echo 'export ANTHROPIC_API_KEY=sk-ant-your-key-here' >> ~/.zshrc
-source ~/.zshrc
-```
+The first time you run `claude`, it will ask you to log in. Follow the browser prompt — it uses your Claude.ai account (no separate API key needed).
 
 ---
 
