@@ -1,0 +1,12 @@
+{
+  "name": "agentic-seller",
+  "version": "1.0.0",
+  "description": "B2B selling system for AEs, BDRs, and founders. Research accounts, write personalized outreach, prep for calls, and run your territory — all without leaving your desktop.",
+  "author": {
+    "name": "Rom Iluz",
+    "homepage": "https://github.com/romiluz13/agentic-seller"
+  },
+  "keywords": ["sales", "B2B", "outreach", "account-research", "CRM"],
+  "repository": "https://github.com/romiluz13/agentic-seller",
+  "license": "MIT"
+}
