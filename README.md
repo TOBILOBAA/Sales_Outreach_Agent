@@ -62,7 +62,7 @@ It scans all your accounts, scores the signals by how well each account fits you
 |------|------|
 | **Claude Code** | Included with Claude.ai subscription |
 | **Claude.ai subscription** | From $20/month (Pro) — enough to get started |
-| **Bright Data** | ~$10/month — free trial available |
+| **Bright Data** | free |
 
 **Bright Data** is what makes research genuinely powerful. Without it: web search results only. With it: full LinkedIn profiles, job postings, company pages, engineering blogs, news. Most serious sellers connect it. You can start without it and add it later.
 
