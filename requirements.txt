@@ -1,0 +1,2 @@
+google-genai>=1.0.0          # Official Gemini SDK — supports both direct API key and Vertex AI
+python-dotenv>=1.0.0         # Loads credentials from .env into os.environ at startup

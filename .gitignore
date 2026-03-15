@@ -2,6 +2,7 @@
 .env
 *.env
 .env.local
+service-account.json
 
 # MCP config with real API keys — use mcp.json.template instead
 .claude/mcp.json
@@ -19,6 +20,11 @@ planning/
 
 # Claude Code internal folders
 .claude/plans/
+
+# Python cache — generated automatically, not needed in version control
+__pycache__/
+*.pyc
+*.pyo
 
 # OS files
 .DS_Store

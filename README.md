@@ -1,5 +1,110 @@
 # agentic-seller
 
+---
+
+## 🤖 AI Sales Agent — Python CLI
+
+> **This is the task submission.** A simple command-line AI sales agent built on top of this repository. Jump straight to [Quick Start](#quick-start) to run it.
+
+### What it does
+
+Given a **company name**, **target persona**, and **product description**, the agent reasons through three sequential steps and outputs a personalized cold outreach email.
+
+```
+Step 1 — Analyse context      → understands the company type and what the persona cares about
+Step 2 — Identify pain points → derives 2–3 specific problems this persona likely faces
+Step 3 — Generate outreach    → writes a cold email grounded in those exact pains
+```
+
+Each step's output is passed as input to the next. The final email is always anchored in the reasoning that came before it — not a generic template.
+
+### Quick Start
+
+**1. Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+**2. Set up credentials**
+
+Copy the example and add your credentials:
+```bash
+cp .env.example .env
+```
+
+Then open `.env` and fill in **one** of the following:
+
+| Option | Setup | When to use |
+|--------|-------|-------------|
+| **A — Gemini API key** | `GEMINI_API_KEY=your_key` | Easiest. Get a free key at [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey) |
+| **B — Vertex AI** | `GOOGLE_CLOUD_PROJECT=your-project-id` + `GOOGLE_APPLICATION_CREDENTIALS=service-account.json` | For GCP users with a service account |
+
+**3. Run**
+```bash
+python run_agent.py
+```
+
+### Example output
+
+```
+Company  : Stripe
+Persona  : Head of Payments
+Product  : AI fraud detection platform
+
+── Step 1 · Analysing company & persona context...
+Stripe operates as a massive-scale payment processing platform...
+
+── Step 2 · Identifying likely pain points...
+  1. Maintaining high authorization rates while simultaneously reducing
+     fraud losses is a constant balancing act...
+  2. Increasing sophistication of fraud tactics makes it difficult to
+     accurately identify fraudulent transactions without false positives...
+  3. Expanding globally requires adapting fraud prevention strategies
+     to diverse payment methods and regional fraud patterns...
+
+── Step 3 · Generating personalised outreach message...
+  fraud false positives at Stripe?
+
+  Hi [Name],
+
+  Stripe handles billions in payments daily — and your fraud teams fight
+  a constant battle against false positives.
+
+  Every wrongly declined transaction erodes customer trust and pushes
+  them to competitors.
+
+  Other Heads of Payments tell us they're tired of manually adjusting
+  rules to balance fraud prevention with customer experience. AI can
+  adapt to evolving fraud patterns autonomously — so approval rates go
+  up while fraud losses go down.
+
+  Would it make sense to show you how we approach this?
+```
+
+### Project structure
+
+```
+run_agent.py           ← CLI entry point — collects inputs, runs the agent
+agent/
+└── sales_agent.py     ← Three-step reasoning engine (SalesAgent class)
+requirements.txt       ← Two dependencies: google-genai, python-dotenv
+.env.example           ← Credential template (copy to .env)
+```
+
+### Agent design
+
+The three reasoning steps are separate methods, each making its own LLM call:
+
+| Step | Method | Input | Output |
+|------|--------|-------|--------|
+| 1 | `step1_analyze_context()` | company, persona, product | Context paragraph |
+| 2 | `step2_identify_pain_points()` | + Step 1 output | List of 2–3 pains |
+| 3 | `step3_generate_outreach()` | + Step 2 output | Cold email |
+
+The `_call_gemini()` private method is a thin wrapper around the SDK — every step goes through the same path, making it trivial to swap models or providers later.
+
+---
+
 ## The AI selling system that actually does the work.
 
 You say one thing. It does ten.
