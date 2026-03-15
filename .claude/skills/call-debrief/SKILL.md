@@ -72,6 +72,13 @@ If seller is giving notes verbally, guide them through these in order:
 - "Was there a specific objection? How did it go?"
 - "Any quote or thing they said that stood out?"
 
+**Objection coaching (AECR check — for every objection mentioned):**
+- "What was the exact objection?"
+- "Did you acknowledge it before responding, or did you jump to the answer?"
+- "What did you say back?"
+- "How did they respond — did the objection go away, change, or stay?"
+Reference: `references/discovery-frameworks.md` Section 7 (AECR) for in-meeting objections.
+
 ---
 
 ## STEP 3 — Map to {{QUALIFICATION_FRAMEWORK}}
@@ -95,6 +102,48 @@ Map every piece of information to the qualification framework.
 - ✅ Confirmed — we have evidence
 - ⬜ Unknown — not yet discussed
 - 🚫 Negative — confirmed blocked or won't happen
+
+---
+
+## STEP 3.5 — MEDDPICC Deal Health Score
+
+Score each MEDDPICC element 0–5 based on evidence from THIS call and prior notes.
+**Use only confirmed evidence. Never guess.**
+
+| Element | 0 | 1–2 | 3–4 | 5 | Score |
+|---------|---|-----|-----|---|-------|
+| M — Metrics | Unknown | Mentioned vaguely | Quantified in their words | ROI calculated, agreed | /5 |
+| E — Economic Buyer | Unknown | Name known | Name + title + involved | Will be in next meeting | /5 |
+| D — Decision Criteria | Unknown | Informal list | Formal criteria shared | We map strongly to all | /5 |
+| D — Decision Process | Unknown | Steps described | Timeline confirmed | Milestone dates agreed | /5 |
+| P — Paper Process | Unknown | Acknowledged exists | Steps described | Timeline confirmed | /5 |
+| I — Identified Pain | Unknown | Surface symptom | Business impact confirmed | Personal impact + urgency | /5 |
+| C — Champion | Unknown | Ally identified | Actively helping us | Will broker EB access | /5 |
+| C — Competition | Unknown | Mentioned vaguely | Competitors named | Our position understood | /5 |
+
+**Composite Score: ___ / 40**
+
+**Score interpretation:**
+- 0–15: Pre-qualification — do not advance stage
+- 16–19: Early stage — priority: pain and champion
+- 20–27: Active opportunity — work all elements
+- 28–34: Strong deal — focus on EB + paper process
+- 35–40: Close-ready — confirm final decision criteria
+
+**Red flag triggers (flag ANY of these immediately):**
+- Single-threaded (only 1 contact, no champion): ⚠️
+- No compelling event (no external urgency driver): ⚠️
+- Champion won't/can't broker EB access: ⚠️
+- Decision criteria unknown after 2+ discovery calls: ⚠️
+- Procurement/legal timeline unknown after verbal yes: ⚠️
+
+**Forecast category assignment:**
+- **Commit** (>90%): Score 35+/40 + next step confirmed + paper started
+- **Best Case** (>60%): Score 28+/40 + champion active + EB identified
+- **Upside** (<60%): Score 20+/40 + discovery complete + Why Anything ✅
+- **Not Forecast**: Score < 20/40
+
+**Forecast Category for this deal:** ___
 
 ---
 
@@ -156,6 +205,8 @@ Stage Recommendation: {Research / Outreach / Engaged / Discovery / Meeting Booke
 
 ---
 
+**MEDDPICC Score:** ___ / 40 | **Forecast Category:** ___
+
 ## What Happened (1-paragraph summary)
 [Raw summary before analysis]
 
@@ -175,6 +226,13 @@ Stage Recommendation: {Research / Outreach / Engaged / Discovery / Meeting Booke
 
 ## Next Step Agreed
 [Exactly what was agreed on the call — the literal commitment]
+
+## Deal Health Assessment
+- **MEDDPICC Score:** ___ / 40
+- **Score trajectory:** ↑ Improving / → Flat / ↓ Declining vs. last call
+- **Red flags:** [None / list any triggered]
+- **Forecast category:** Commit / Best Case / Upside / Not Forecast
+- **Key gap to close next:** [Top 1 element to fill]
 
 ## Objections Logged
 | Type | Verbatim Quote | Stage | Response Used | Outcome |
@@ -263,3 +321,5 @@ Set: account name, due date, priority, assigned to ({{SELLER_NAME}} or {{AE_NAME
 - [ ] account-brief.md updated (qualification status + last interaction)
 - [ ] CRM log notes drafted (paste-ready or synced)
 - [ ] CRM task created for any commitments made on call
+- [ ] MEDDPICC deal score calculated (0–40) and recorded in call notes header
+- [ ] Red flags explicitly surfaced to seller (or "None" confirmed)

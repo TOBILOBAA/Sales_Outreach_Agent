@@ -78,6 +78,25 @@ Find at least 1 proof point that specifically matches their industry or tech sta
 
 ---
 
+## STEP 2.5 — Draft Upfront Contract Opener
+
+Before building the agenda, draft the upfront contract for this specific call.
+Reference: `references/discovery-frameworks.md` Section 4.
+
+**Template (fill in before the call):**
+> "[Name], I want to make sure this is a good use of your time.
+> I'll spend [X minutes] understanding [their specific situation based on research].
+> Then I'll share [specific thing: 1-2 examples / a capability / how similar companies solved this].
+> At the end, either this makes sense to explore — and we'll agree on a next step — or it doesn't, and we'll both know that. Either outcome is fine.
+> Does that work?"
+
+**Fill in before the call:**
+- Their specific situation: ___
+- What you'll share: ___
+- Proposed next step if it goes well: ___
+
+---
+
 ## STEP 3 — {{QUALIFICATION_FRAMEWORK}} Gap Analysis
 
 Map current knowledge. Mark each element:
@@ -159,6 +178,22 @@ If any Why is ⬜ → it becomes a goal for this meeting.
 - "What breaks first when [their scale challenge] happens?"
 - "What have you tried to solve this? What worked, what didn't?"
 
+**SPIN Implication questions** (ask after they confirm a problem):
+- "If [problem] keeps happening, what does that mean for [their team / their metric]?"
+- "What's the downstream impact on [adjacent process] when this breaks?"
+- "How often does this happen — and what does each occurrence cost?"
+
+**Sandler Level 2 (business impact) — ask after Level 1 surface pain:**
+- "What does that mean for the business? Revenue, cost, or risk?"
+- "Is this something leadership has noticed? How does it come up?"
+
+**Sandler Level 3 (personal/emotional) — only with rapport, only with champion:**
+- "How does this affect you personally when it happens?"
+- "What would it mean for you and your team if this was solved by [their timeline]?"
+
+**60/40 check:** If you've asked 3 questions in a row and they've given short answers, stop and say:
+> "I've been asking a lot — what's your reaction so far? What matters most to you here?"
+
 ### Metrics (M)
 - "If you fixed [pain], what would that mean in hours/dollars/time?"
 - "How are you measuring success for [project]?"
@@ -186,6 +221,16 @@ If any Why is ⬜ → it becomes a goal for this meeting.
 | "No budget right now" | "Understood — is this a timing question or a priority question?" |
 | "We're evaluating X" | "What's your evaluation criteria? We'd love to make sure {{PRODUCT_NAME}} is in the mix." |
 | [Add objections from research/prior calls] | |
+
+## Competitive Prep
+
+*Reference: `references/competitive-positioning.md` + `knowledge/competitive/` battlecards*
+
+| Competitor | Zone | FIA Position | Landmine Question |
+|-----------|------|-------------|------------------|
+| [Name] | Winning / Battling / Losing | [FIA reframe in 1 sentence] | [1 question that surfaces their weakness] |
+
+**If no competitor in play:** Leave this section blank. Do not invent a competitor.
 
 ## Proof Points Ready
 
@@ -233,3 +278,5 @@ Print or pin before the call:
 - [ ] At least 1 proof point from live search matched to their profile
 - [ ] Sales Motion Route and CTA mapped
 - [ ] Meeting brief saved to `meetings/` with today's date
+- [ ] Upfront contract drafted (Step 2.5 template filled in)
+- [ ] At least 2 implication/impact questions in the discovery question set

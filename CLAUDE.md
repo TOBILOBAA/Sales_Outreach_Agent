@@ -167,7 +167,8 @@ memory/
 ├── account-intel.md          ← Persistent. Append with dates.
 ├── objection-library.md      ← Built by objection-mining skill. Append only.
 ├── territory-signals.md      ← Built by signal-scoring. Overwrite each run.
-└── icp-matrix.md             ← Built by icp-matrix-builder. Overwrite monthly.
+├── icp-matrix.md             ← Built by icp-matrix-builder. Overwrite monthly.
+└── pipeline-forecast.md      ← Built by pipeline-analyst. Overwrite each run.
 
 knowledge/
 ├── competitive/              ← Battlecards per competitor
@@ -186,6 +187,9 @@ knowledge/
 | Social plan | `social-selling` | `accounts/{company}/emails/YYYY-MM-DD-social-plan.md` |
 | Territory signals | `signal-scoring` | `memory/territory-signals.md` |
 | ICP matrix | `icp-matrix-builder` | `memory/icp-matrix.md` |
+| Deal strategy | `deal-strategist` | `accounts/{company}/meetings/YYYY-MM-DD-deal-strategy.md` |
+| Pipeline forecast | `pipeline-analyst` | `memory/pipeline-forecast.md` |
+| Proposal draft | `proposal-strategist` | `accounts/{company}/meetings/YYYY-MM-DD-proposal-draft.md` |
 
 ---
 
@@ -208,6 +212,25 @@ knowledge/
 
 **Confidence status:** ✅ Confirmed | ⬜ Unknown | 🎯 Probing | 🚫 Negative signal
 
+**Deal Health Score (0–5 per element → 0–40 composite):**
+
+Score each MEDDPICC element 0–5 from call evidence. Composite = sum of all 8.
+
+| Score | Interpretation |
+|-------|---------------|
+| 0–15 | Pre-qualification — do not advance stage |
+| 16–19 | Early stage — priority: pain and champion |
+| 20–27 | Active opportunity — work all elements |
+| 28–34 | Strong deal — focus on EB + paper process |
+| 35–40 | Close-ready — confirm final decision criteria |
+
+**Red flag triggers (flag immediately if any are true):**
+- Single-threaded: only 1 contact, no champion identified
+- No compelling event: no external urgency driver found
+- Champion won't or can't broker Economic Buyer access
+- Decision criteria unknown after 2+ discovery calls
+- Procurement/legal timeline unknown after verbal yes
+
 ---
 
 ### The 3 Whys (B2B Qualification Framework)
@@ -219,6 +242,23 @@ knowledge/
 | **Why Now** | What external event creates urgency? Not our quota — their deadline. | ⬜ |
 
 All 3 must be ✅ before advancing to a qualified opportunity.
+
+---
+
+### Discovery Frameworks
+
+Use these in discovery calls and meeting prep. Full reference: `.claude/skills/discovery-prep/references/discovery-frameworks.md`
+
+| Framework | When to use | Core idea |
+|-----------|------------|-----------|
+| **SPIN** | Any discovery call | Situation → Problem → Implication → Need-Payoff. Never jump to Implication without a confirmed Problem. |
+| **Gap Selling** | When buyer isn't feeling urgency | Current State → Root Cause → Future State. Make the gap vivid before introducing any capability. |
+| **Sandler Pain Funnel** | When you have rapport | Surface pain → Business impact → Personal/emotional (Level 3 is where deals are won) |
+| **Upfront Contract** | Every call opener | Set agenda + normalize a "no" so you can earn a real "yes." Eliminates "I'll think about it." |
+| **AECR** | In-meeting objections | Acknowledge → Empathize → Clarify → Reframe. For cold call objections use AAA (see cold-call-framework.md). |
+
+**60/40 Rule:** Buyer speaks 60%+ of the time in a great discovery. If you're talking more — ask a question.
+Recovery phrase: *"I've been talking a lot — what's your reaction to what you've heard so far?"*
 
 ---
 
@@ -263,6 +303,9 @@ Claude invokes the right skill automatically when it detects these triggers.
 | "linkedin plan", "social selling", "engagement plan", "warm path", "weekly plan" | `/social-selling` | LinkedIn engagement ladder → weekly account plan |
 | "score signals", "territory health", "what's hot", "prioritize accounts", "territory snapshot" | `/signal-scoring` | Scan territory → weight by ICP tier → ranked signal list |
 | "icp score", "tier assignment", "who fits best", "icp matrix", "score account" | `/icp-matrix-builder` | 5-dimension ICP scoring → tier assignment → update icp-matrix.md |
+| "deal strategy", "stuck deal", "how do I win this", "deal blocked", "competitive play", "deal health", "competitive strategy", "how to advance", "reframe strategy" | `/deal-strategist` | MEDDPICC diagnosis → deal problem type → 3 specific next moves |
+| "pipeline review", "forecast", "what's my number", "pipeline health", "weekly forecast", "commit list", "coverage analysis" | `/pipeline-analyst` | All active deals → MEDDPICC scores → forecast categories + coverage ratio |
+| "proposal", "write the business case", "executive summary", "win themes", "three-act proposal", "write proposal", "build proposal" | `/proposal-strategist` | Discovery notes + win themes → three-act narrative + exec summary |
 
 Skills live in `.claude/skills/` and are auto-discovered by Claude Code.
 
@@ -366,13 +409,14 @@ Fill that file with your company's actual customer wins. Format:
 ```
 ## Active Pipeline (updated {{TODAY}})
 
-| Account | Stage | Value Driver | Champion | Qual Score | Top Signal | Next Action |
-|---------|-------|-------------|----------|-----------|-----------|-------------|
-| — | — | — | — | 0/8 | — | — |
+| Account | Stage | Value Driver | Champion | MEDDPICC Score | Top Signal | Next Action |
+|---------|-------|-------------|----------|---------------|-----------|-------------|
+| — | — | — | — | 0/40 | — | — |
 
 Territory health:
 - Total pipeline: $0
-- Hot (score 6+/8): 0 accounts
+- Forecast-ready (score 28+/40): 0 accounts
+- Hot (score 20+/40): 0 accounts
 - Research needed: 0 accounts
 - Outreach pending: 0 accounts
 - In discovery: 0 accounts
@@ -401,6 +445,8 @@ Skills feed each other. Understand the flow so outputs are compatible.
 | `prospect-research` | `write-outreach` | Research file must contain: Company Overview, Tech Stack, Pain Signals, Leadership Contacts, Top 3 Outreach Hooks | write-outreach reads most recent research file automatically |
 | `call-debrief` | `objection-mining` | Each call notes file must contain `## Objections Logged` table | objection-mining scans all `discovery/` files and aggregates |
 | `icp-matrix-builder` | `signal-scoring` | `memory/icp-matrix.md` must contain Account Tiers table with scores | signal-scoring weights signals by ICP tier before surfacing |
+| `call-debrief` + `discovery-prep` | `deal-strategist` | MEDDPICC score + qualification gaps + meeting history → deal problem diagnosis | deal-strategist reads most recent discovery notes and meeting brief automatically |
+| `deal-strategist` + `icp-matrix-builder` | `pipeline-analyst` | Per-deal MEDDPICC scores + ICP tiers → pipeline forecast + coverage | reads all account-briefs, uses MEDDPICC scores and ICP tier weights |
 
 **Chain format specs:** See `planning/INTERFACE-CONTRACT.md` Section 4 for exact table structures.
 
@@ -422,3 +468,6 @@ Skills feed each other. Understand the flow so outputs are compatible.
 | "Who should I target at [company]?" | Research files → contact priority + persona mapping |
 | "What persona is [title]?" | buyer-personas.md → language guide for that role |
 | "Update my pipeline" | Re-read all account-briefs → refresh working memory table |
+| "Deal strategy for [company]" | MEDDPICC score → deal problem diagnosis → 3 specific next moves |
+| "Pipeline review" / "What's my forecast?" | All deals → forecast categories + coverage ratio + at-risk list |
+| "Write proposal for [company]" | Discovery notes + win themes → three-act narrative + exec summary |
